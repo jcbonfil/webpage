@@ -49,5 +49,25 @@
         <p>Explora nuestro contenido y descubre todo lo que tenemos para ofrecerte.</p>
         <a href="#contenido" class="cta-button">Comenzar</a>
     </header>
+    <script>
+    // Obtener el contador desde LocalStorage
+    let visitCount = localStorage.getItem('visitCount');
+
+    // Si no existe, inicializarlo en 0
+    if (!visitCount) {
+        visitCount = 0;
+    }
+
+    // Incrementar el contador
+    visitCount++;
+
+    // Guardar el contador actualizado en LocalStorage
+    localStorage.setItem('visitCount', visitCount);
+
+    // Mostrar el contador en la página
+    document.body.insertAdjacentHTML('beforeend', `<footer style="margin-top: 2rem; font-size: 1rem;">
+        Número de visitas: ${visitCount}
+    </footer>`);
+</script>
 </body>
 </html>
