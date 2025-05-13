@@ -50,6 +50,31 @@
             margin-top: 20px;
             text-align: center;
         }
+        #countdown span {
+            color: yellow;
+        }
+        /* Estilo para el mensaje de graduación */
+        #graduation-message {
+            font-size: 2rem;
+            color: red;
+            animation: color-change 1s infinite alternate; /* Animación de cambio de color */
+        }
+        @keyframes color-change {
+            from {
+                color: red;
+            }
+            to {
+                color: yellow;
+            }
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Detrás del contenido */
+        }
     </style>
 </head>
 <body>
@@ -75,6 +100,58 @@
         const graduationDate = new Date("2025-05-13T18:05:00").getTime();
         const countdownElement = document.getElementById("time");
         const boton = document.getElementById("boton");
+ // Configurar el canvas para fuegos artificiales
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Función para simular fuegos artificiales
+        const fireworks = [];
+        class Firework {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.radius = Math.random() * 3 + 2;
+                this.life = 100;
+                this.dx = Math.random() * 4 - 2;
+                this.dy = Math.random() * 4 - 2;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+                this.life -= 2;
+            }
+        }
+
+        function createFireworks() {
+            for (let i = 0; i < 100; i++) {
+                fireworks.push(new Firework(
+                    Math.random() * canvas.width,
+                    Math.random() * canvas.height,
+                    `hsl(${Math.random() * 360}, 100%, 50%)`
+                ));
+            }
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach((firework, index) => {
+                firework.update();
+                firework.draw();
+                if (firework.life <= 0) {
+                    fireworks.splice(index, 1);
+                }
+            });
+            requestAnimationFrame(animateFireworks);
+        }
 
         // Actualizar el conteo regresivo cada segundo
         const countdownInterval = setInterval(() => {
