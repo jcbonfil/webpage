@@ -123,29 +123,7 @@
 }, 1000);
         
        
-        // Actualizar el conteo regresivo cada segundo
-        const countdownInterval = setInterval(() => {
-            const now = new Date().getTime();
-            const timeLeft = graduationDate - now;
-
-            // Calcular días, horas, minutos y segundos
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Mostrar el resultado en el elemento con id="time"
-            countdownElement.innerHTML = 
-                `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
-
-            // Si se llega a la fecha, habilitar el botón
-            if (timeLeft <= 0) {
-                clearInterval(countdownInterval);
-                countdownElement.innerHTML = "¡Felicidades, hoy es la ceremonia de graduación!";
-                boton.disabled = false; // Habilitar el botón
-                boton.classList.add("activo"); // Cambiar estilo del botón
-            }
-        }, 1000);
+        
  function createFireworks() {
             for (let i = 0; i < 100; i++) {
                 fireworks.push(new Firework(
