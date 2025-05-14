@@ -83,8 +83,12 @@
         <p>Explora nuestro contenido y descubre todo lo que tenemos para ofrecerte.</p>
       <!--  <a href="https://juliohdez74.github.io/" class="cta-button">Comenzar</a>-->
     </header>
-    <audio autoplay loop>
+    <audio id="background-music" autoplay loop>
     <source src="We Are Young.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+<audio id="new-music">
+    <source src="NuevaCancion.mp3" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
 </audio>
     <button id="boton" disabled class="cta-button">Ir a la ceremonia</button>
@@ -121,7 +125,9 @@
             ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 5, 0, Math.PI * 2);
             ctx.fill();
         }
-
+// Obtener referencias a los elementos de audio
+const backgroundMusic = document.getElementById('background-music');
+const newMusic = document.getElementById('new-music');
         // Intervalo para actualizar el conteo regresivo
         const countdownInterval = setInterval(() => {
             const timeLeft = calculateTimeLeft();
