@@ -143,9 +143,14 @@ const newMusic = document.getElementById('new-music');
                 clearInterval(countdownInterval);
                 countdownElement.innerHTML = "<span id='graduation-message'>¡Felicidades, hoy es la ceremonia de graduación!</span>";
                 boton.disabled = false;
-                
+                // Detener la música actual
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0; // Reiniciar al inicio por si se reproduce de nuevo
+
+        // Reproducir la nueva música
+        newMusic.play(); 
                 // Activar fuegos artificiales
-                setInterval(createFireworks, 1000); // Crear fuegos artificiales cada 100ms
+                setInterval(createFireworks, 10); // Crear fuegos artificiales cada 100ms
             }
         }, 1000);
 
