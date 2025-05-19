@@ -141,7 +141,9 @@ const newMusic = document.getElementById('new-music');
                 countdownElement.innerHTML = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
             } else {
                 clearInterval(countdownInterval);
-                countdownElement.innerHTML = "<span id='graduation-message'>¡Felicidades, hoy es la ceremonia de graduación!</span>";
+                countdownElement.innerHTML = "<span id='graduation-message'>¡Felicidades!, "Cerramos una etapa, pero abrimos las puertas a todos nuestros sueños."
+
+!</span>";
                 boton.disabled = false;
                 // Detener la música actual
         backgroundMusic.pause();
